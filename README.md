@@ -39,17 +39,40 @@ grunt.initConfig({
 
 ### Options
 
-#### options.separator
+#### options.locales
+Type: `Array`
+Default value: `["en"]`
+
+Available locales
+
+#### options.src
 Type: `String`
-Default value: `',  '`
 
-A string value that is used to do something with whatever.
+File globbing to html template files
 
-#### options.punctuation
+#### options.dest
 Type: `String`
-Default value: `'.'`
+Default value: `build/templates.js`
 
-A string value that is used to do something else with whatever else.
+Destination target for compiled file.
+
+#### options.htmlmin
+Type: `Object`
+
+[html-minifier](https://github.com/kangax/html-minifier) options
+
+
+#### options.generateKey
+Type: `function (locale, file)`
+
+Generating the key to identify the template in angular templatecache.
+
+#### options.module.name
+Type: `String`
+Default value: `myApp`
+
+module name
+
 
 ### Usage Examples
 
