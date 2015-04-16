@@ -1,7 +1,7 @@
 {
   "name": "grunt-angular-i18n-templates",
   "description": "This plugin precompiles html files/templates and put them into angular template cache. It is also reading locale information and generating localized templates",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "homepage": "https://github.com/labertasch/angular-i18n-templates",
   "author": {
     "name": "Senol Tas",
