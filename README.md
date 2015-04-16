@@ -2,6 +2,8 @@
 
 > This plugin precompiles html files/templates and put them into angular template cache. It is also reading locale information and generating localized templates
 
+This plugin was inspired by [grunt-html2js](https://github.com/karlgoldstein/grunt-html2js)
+
 ## Getting Started
 This plugin requires Grunt `~0.4.5`
 
