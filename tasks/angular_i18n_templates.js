@@ -1,6 +1,6 @@
 /*
  * grunt-angular-i18n-templates
- * https://github.com/YourDabbawala/angular-i18n-templates
+ * https://github.com/labertasch/angular-i18n-templates
  *
  * Copyright (c) 2015 Senol Tas <input@senol.io>
  * Licensed under the MIT license.
