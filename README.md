@@ -56,7 +56,7 @@ This is the minimal configuration. it will search for all `*.html` files for the
 inside this folder it is looking for `locale_{locale}.json`. For instance for the locale en, it will search for `i18n/locale_en.json`.
 The first locale will be the default locale. If for there is no locale existing it will fallback to the default locale. the other locales wil be merged into the default locale.
 
-This project is using [html-minifier][https://github.com/kangax/html-minifier]. You can pass all html-minifier options into `htmlmin` option.
+This project is using [html-minifier](https://github.com/kangax/html-minifier]). You can pass all html-minifier options into `htmlmin` option.
 
 
 ```js
