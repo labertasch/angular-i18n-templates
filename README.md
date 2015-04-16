@@ -52,32 +52,63 @@ A string value that is used to do something else with whatever else.
 ### Usage Examples
 
 #### Default Options
-In this example, the default options are used to do something with whatever. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result would be `Testing, 1 2 3.`
+This is the minimal configuration. it will search for all `*.html` files for the given locales. The task is looking for i18n folder next to the html template file.
+inside this folder it is looking for `locale_{locale}.json`. For instance for the locale en, it will search for `i18n/locale_en.json`.
+The first locale will be the default locale. If for there is no locale existing it will fallback to the default locale. the other locales wil be merged into the default locale.
+
+This project is using [html-minifier][https://github.com/kangax/html-minifier]. You can pass all html-minifier options into `htmlmin` option.
+
 
 ```js
 grunt.initConfig({
-  angular_i18n_templates: {
-    options: {},
-    files: {
-      'dest/default_options': ['src/testing', 'src/123'],
-    },
+angular_i18n_templates: {
+  options: {
+    locales: ["en", "de", "it", "fr", "ch_de", "ch_fr"],
+    src: "src/**.html",
+    dest: "build/templates.js",
   },
-});
+  dev: {
+    options: {
+      htmlmin : {
+        removeComments: true,
+        collapseWhitespace: true
+      }
+    }
+  }
+}});
 ```
 
 #### Custom Options
-In this example, custom options are used to do something else with whatever else. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result in this case would be `Testing: 1 2 3 !!!`
+You can change the module name and format. additionally you can overwrite the generateKey function.
+This plugin is using the file path as a key and prepending the locale. if the template file is located in `test/src/templates/header.html` the key
+for `en` locale will be `en/test/src/templates/header.html` or for `ch_de` it would be `ch_de/test/src/templates/header.html`. this example
+is removing test/src from the key and replacing underscore with slash. the result ist then `ch/de/templates/header.html`
 
 ```js
 grunt.initConfig({
   angular_i18n_templates: {
-    options: {
-      separator: ': ',
-      punctuation: ' !!!',
-    },
-    files: {
-      'dest/default_options': ['src/testing', 'src/123'],
-    },
+      options: {
+        locales: ["en", "de", "it", "fr", "ch_de", "ch_fr"],
+        src: "src/**.html",
+        dest: "build/templates.js",
+        module: {
+          name: "myApp",
+          isNew: true
+        },
+        generateKey: function (locale, file) {
+          return locale.replace("_", "/") + "/" + file.replace("test/src/", "");
+        }
+      },
+      dev: {
+        options: {
+          htmlmin : {
+            removeComments: true,
+            collapseWhitespace: true
+          }
+        }
+      }
+
+    }
   },
 });
 ```
