@@ -1,0 +1,10 @@
+{
+  "locale"  : "en",
+  "header" : {
+    "title" :  "page title"
+  },
+  "footer"  : {
+    "aboutus" : "About Us",
+    "help"  : "Help {{angular statement}}"
+  }
+}

@@ -1,0 +1,4 @@
+{
+  "locale"  : "en",
+  "label" : "this is a label {{gender}}"
+}

@@ -1,0 +1,10 @@
+{
+  "locale"  : "de",
+  "header"  : {
+    "title": "Seitentitel"
+  },
+  "footer"  : {
+    "aboutus" : "Über uns",
+    "help"  : "Hilfe"
+  }
+}

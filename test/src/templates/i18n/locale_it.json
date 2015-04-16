@@ -1,0 +1,9 @@
+{
+  "locale"  : "it",
+  "header"  : {
+    "title" : "italian title"
+  },
+  "footer"  : {
+    "help"  : "italian help {{angular statement}}"
+  }
+}
