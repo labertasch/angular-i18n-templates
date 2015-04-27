@@ -40,14 +40,15 @@ module.exports = function(grunt) {
 
     var locales = {}; // implement locale cache eventually
     var defaultLocale = options.locales[0];
+
     var defaultLoc;
 
     var outputTemplate  = "var myApp = angular.module('<%=module.name%>'<%if (module.isNew) { %>, []<%}%>);\n";
-        outputTemplate += "myApp.run(function($templateCache) {\n";
+        outputTemplate += "myApp.run(['$templateCache', function($templateCache) {\n";
         outputTemplate += "<% for(var i=0; i< items.length; i++) {%>";
         outputTemplate += "   $templateCache.put('<%=items[i].key%>', <%-items[i].escapedContent%>);\n";
         outputTemplate += "<% }%>";
-        outputTemplate +=" });";
+        outputTemplate +=" }]);";
 
 
 
@@ -70,7 +71,7 @@ module.exports = function(grunt) {
         var parent = path.dirname(f);
         var hasLocales = grunt.file.isDir(parent + "/i18n");
         var mergedfiles = [];
-
+        
         options.locales.forEach(function (locale) {
           var loc = loadLocale(parent, locale);
               loc.getKey = function (key) {
@@ -86,16 +87,15 @@ module.exports = function(grunt) {
           };
           mergedfiles.push(returnobject);
         });
-
         return mergedfiles;
     }
 
     function readFiles(globbing) {
       return function (f) {
-        var data=[];
+        var data=[];                 
         grunt.file.expand({filter: 'isFile'}, globbing).forEach(function (f){
-          data = data.concat(readContents(f));
-          templates++;
+          data = data.concat(readContents(f));           
+          templates++;            
         });
         return data;
       };
@@ -105,10 +105,9 @@ module.exports = function(grunt) {
       return ejs.render(template, data);
     }
 
-
     var results = {
       module: options.module,
-      items: readFiles("test/src/**/*.html")(readContents)
+      items: readFiles(options.src)(readContents)
     };
 
     var finalOutput = renderFinalResult(outputTemplate, results);
